@@ -140,7 +140,7 @@ img {
 
 /* Overwrite height constraints of old CSS */
 img.img_orizzontali {
-  width: 100%;
+  width: 55%;
   max-width: 500px;
   height: auto;
 }
