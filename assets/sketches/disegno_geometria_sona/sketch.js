@@ -79,44 +79,6 @@ function draw() {
   // INTERFACCIA TESTUALE
   // ===================================================
 
-  noStroke();
-  fill(0, 150);
-
-  textAlign(LEFT, TOP);
-
-  textSize(14);
-  text("African Sona Geometry Explorer", 15, 15);
-
-  textSize(12);
-
-  // Testo dinamico in base allo strumento selezionato
-  let modeStr =
-    drawingTool === 'DOTS'
-      ? '● DOTS (Click grid to toggle dots)'
-      : '▐ WALLS (Click between dots to toggle walls)';
-
-  // Colore diverso per distinguere la modalità
-  fill(
-    drawingTool === 'DOTS'
-      ? color(0, 150)
-      : color(200, 50, 50, 200)
-  );
-
-  text(`Current Tool: ${modeStr}`, 15, 35);
-
-  fill(0, 150);
-
-  text(
-    "W - Toggle Tool | Z - Undo | C - Clear | G - Grid | S - Save PNG",
-    15,
-    55
-  );
-
-  fill(200, 50, 50, 200);
-
-  text("R - Generate Asymmetry (Random Walls)", 15, 75);
-
-
 
   // ===================================================
   // SISTEMA DI TRASFORMAZIONE
@@ -145,7 +107,7 @@ function draw() {
   // DISEGNO DEI PUNTI
   // ===================================================
 
-  fill(40);
+  fill(120);
   noStroke();
 
   for (let dot of system.dots) {
@@ -237,7 +199,7 @@ function windowResized() {
 function mousePressed() {
 
   // Evita click sopra la UI testuale
-  if (mouseX < 400 && mouseY < 110) return;
+  // if (mouseX < 400 && mouseY < 110) return;
 
 
 
@@ -351,8 +313,8 @@ function keyPressed() {
 // =====================================================
 function drawGrid() {
   
-// colore della griglia
-  stroke(0, 0, 0, 15);
+  // colore della griglia
+  stroke(210);
   strokeWeight(1);
 
   let cols = Math.ceil(width / cellSize);
@@ -634,12 +596,6 @@ class SonaSystem {
   // GENERAZIONE DEI PERCORSI SONA
   // ===================================================
   // Questa è la parte più importante del programma.
-  //
-  // Il sistema:
-  // - parte dai bordi dei punti
-  // - crea traiettorie diagonali
-  // - rimbalza contro muri o vuoti
-  // - salva il percorso generato
   // ===================================================
   generateLoops() {
 
@@ -739,36 +695,29 @@ class SonaSystem {
 
 
               // =======================================
-              // CONTROLLO RIMBALZI
+              // CONTROLLO RIMBALZI (MODIFICATO)
               // =======================================
 
-              // Se siamo su un muro verticale
+              // Se siamo su una linea della griglia verticale
               if (curX % 1 !== 0) {
+                
+                // Determina la cella verso cui ci stiamo muovendo orizzontalmente
+                let targetX = curVx > 0 ? Math.ceil(curX) : Math.floor(curX);
 
-                let d1 = Math.floor(curX);
-                let d2 = Math.ceil(curX);
-
-                // Rimbalzo
-                if (
-                  !isDot(d1, curY) ||
-                  !isDot(d2, curY) ||
-                  isWall(curX, curY)
-                ) {
+                // Rimbalza solo se la cella di destinazione NON ha un punto, o se c'è un muro
+                if (!isDot(targetX, curY) || isWall(curX, curY)) {
                   curVx = -curVx;
                 }
               }
 
-              // Se siamo su muro orizzontale
+              // Se siamo su una linea della griglia orizzontale
               else if (curY % 1 !== 0) {
+                
+                // Determina la cella verso cui ci stiamo muovendo verticalmente
+                let targetY = curVy > 0 ? Math.ceil(curY) : Math.floor(curY);
 
-                let d1 = Math.floor(curY);
-                let d2 = Math.ceil(curY);
-
-                if (
-                  !isDot(curX, d1) ||
-                  !isDot(curX, d2) ||
-                  isWall(curX, curY)
-                ) {
+                // Rimbalza solo se la cella di destinazione NON ha un punto, o se c'è un muro
+                if (!isDot(curX, targetY) || isWall(curX, curY)) {
                   curVy = -curVy;
                 }
               }
