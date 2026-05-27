@@ -108,6 +108,13 @@ p i {
   font-weight: 400;
 }
 
+.testo_piccolo {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  padding: 0;
+}
+
 ul {
   margin: 0;
   padding: 0 0 0 1.25rem;
@@ -169,11 +176,12 @@ iframe {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background-color: #121212;
-  margin: 2rem 0;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   align-self: flex-start;
   /* Invert light canvas background and elements to dark mode natively */
   filter: invert(1) grayscale(100%) contrast(1.15) brightness(0.95);
+  margin: 0;
+  padding: 0;
 }
 
 /* Responsive queries */
