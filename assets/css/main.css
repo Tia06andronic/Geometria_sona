@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #0c0c0c; /* Deep, rich black */
+  --text-main: #f5f5f7; /* Crisp off-white */
+  --text-muted: #a1a1a6; /* Clean readable mid-gray for body text */
+  --text-light: #6e6e73; /* Subtle gray for secondary elements */
+  --border-color: #222224; /* Minimal dark divider border */
+  --font-family: 'Sora', sans-serif;
+  --max-width: 1100px;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-muted);
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.contenitore {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 6rem 2rem 10rem 2rem;
+}
+
+/* Header styling */
+header {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 4rem;
+  margin-bottom: 6rem;
+  align-items: center;
+}
+
+header span {
+  height: 1px;
+  background-color: var(--text-main);
+  display: block;
+  width: 100%;
+}
+
+header h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+/* Section styling */
+section {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 4rem;
+  padding-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.filetto {
+  border-top: 1px solid var(--border-color);
+}
+
+.titolo-sezione {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+  margin: 0;
+  position: sticky;
+  top: 3rem;
+  align-self: start;
+}
+
+.contenuto-sezione {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Prose and lists */
+p {
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.075rem;
+  color: var(--text-muted);
+  max-width: 45rem;
+}
+
+b {
+  font-weight: 700;
+}
+
+p i {
+  font-style: italic;
+  font-weight: 400;
+}
+
+ul {
+  margin: 0;
+  padding: 0 0 0 1.25rem;
+  color: var(--text-muted);
+  list-style-type: square;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 45rem;
+}
+
+li {
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  padding-left: 0.25rem;
+}
+
+/* Media assets styling */
+img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin-bottom: 5rem;
+  border-radius: 4px;
+  filter: grayscale(100%) brightness(0.85) contrast(1.1); /* Adjusted for dark mode integration */
+  transition: none; /* Avoid animations */
+}
+
+/* Overwrite height constraints of old CSS */
+img.img_orizzontali {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+img.img_cosa_sono_i_grafi {
+  width: 50%;
+  max-width: 700px;
+  height: auto;
+}
+
+video {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  margin: 1.5rem 0 1rem 0;
+  border-radius: 3em;
+  border: 1px solid var(--border-color);
+  background-color: #000;
+  filter: brightness(0.9);
+}
+
+/* Interactive Laboratory Iframe */
+iframe {
+  width: 100%;
+  height: 600px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #121212;
+  margin: 2rem 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  align-self: flex-start;
+  /* Invert light canvas background and elements to dark mode natively */
+  filter: invert(1) grayscale(100%) contrast(1.15) brightness(0.95);
+}
+
+/* Responsive queries */
+@media (max-width: 900px) {
+  .contenitore {
+    padding: 3rem 1.5rem 6rem 1.5rem;
+  }
+  
+  header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  
+  header span {
+    display: none;
+  }
+  
+  section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .titolo-sezione {
+    position: static;
+    font-size: 1.25rem;
+  }
+  
+  iframe {
+    height: 500px;
+    margin: 1rem 0;
+  }
+}
