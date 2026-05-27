@@ -199,7 +199,6 @@ function windowResized() {
 function mousePressed() {
 
   // Evita click sopra la UI testuale
-  // if (mouseX < 400 && mouseY < 110) return;
 
 
 
